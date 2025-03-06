@@ -1,0 +1,30 @@
+<configuration>
+<!--    appenders are used to send log outputs like on console or file and root is used to denote the whole application log ,enocder pattern is used to give log patterns like date-->
+
+    <appender name="myConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${PID:- }] [%thread] %logger{40} - %msg%n</pattern>
+            <charset>UTF8</charset>
+        </encoder>
+    </appender>
+    <appender name="myFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>
+            journalApp.log
+        </file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>journalApp.%d{yyyyMMdd_HH}.%i.log</fileNamePattern>
+            <maxFileSize>500KB</maxFileSize>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${PID:- }] [%thread] %logger{40} - %msg%n</pattern>
+            <charset>UTF8</charset>
+        </encoder>
+
+    </appender>
+    <root level= "INFO">
+        <appender-ref ref="myConsoleAppender" />
+        <appender-ref ref="myFileAppender" />
+
+    </root>
+</configuration>
